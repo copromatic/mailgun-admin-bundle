@@ -1,0 +1,22 @@
+{
+    "name" : "copromatic/mailgun-admin-bundle",
+    "description" : "A bundle that offers a set of tools to monitor emails sent via Mailgun",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "yannis",
+        "email" : "yannis@copromatic.com"
+    }],
+    "keywords" : [
+        "mailgun tools admin bundle"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Copromatic\\MailgunAdminBundle" : ""
+        }
+    }
+}
