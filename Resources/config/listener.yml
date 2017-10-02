@@ -1,6 +1,6 @@
 services:
     mailgun_admin.listener.send:
         class: Copromatic\MailgunAdminBundle\Listener\Send
-        arguments: ['@doctrine', '@logger']
+        arguments: ['@doctrine.orm.default_entity_manager', '@logger']
         tags:
             - { name: swiftmailer.mailer.plugin }

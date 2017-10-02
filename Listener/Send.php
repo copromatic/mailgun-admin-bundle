@@ -3,12 +3,13 @@
 namespace Copromatic\MailgunAdminBundle\Listener;
 
 use Copromatic\MailgunAdminBundle\Entity\Message;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
 use Monolog\Logger;
 
 class Send implements \Swift_Events_SendListener
 {
-    /** @var EntityManager */
+    /** @var Registry */
     private $em;
 
     /** @var Logger */
@@ -20,11 +21,7 @@ class Send implements \Swift_Events_SendListener
         $this->logger = $logger;
     }
 
-    public function beforeSendPerformed(\Swift_Events_SendEvent $event)
-    {
-        $this->logger->addAlert('from beforeSend');
-        dump($event);
-    }
+    public function beforeSendPerformed(\Swift_Events_SendEvent $event){}
 
     public function sendPerformed(\Swift_Events_SendEvent $event)
     {
