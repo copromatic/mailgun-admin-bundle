@@ -24,7 +24,7 @@ class Message {
     /**
      * @var integer
      *
-     * @ORM\Column(name="mailgun_id", type="integer", nullable=false)
+     * @ORM\Column(name="mailgun_id", type="string", length="256", nullable=false)
      */
     private $mailgunId;
 
