@@ -22,9 +22,9 @@ class Message {
     private $id;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="mailgun_id", type="string", length="256", nullable=false)
+     * @ORM\Column(name="mailgun_id", type="string", length=256, nullable=false)
      */
     private $mailgunId;
 
@@ -51,7 +51,7 @@ class Message {
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getMailgunId()
     {
@@ -59,7 +59,7 @@ class Message {
     }
 
     /**
-     * @param int $mailgunId
+     * @param string $mailgunId
      * @return Message
      */
     public function setMailgunId($mailgunId)
