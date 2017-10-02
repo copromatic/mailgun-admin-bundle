@@ -1,0 +1,23 @@
+copromatic_mailgun_admin_bounce:
+    path:     /bounce
+    defaults: { _controller: MailgunAdminBundle:Webhook:bounce }
+
+copromatic_mailgun_admin_deliver:
+    path:     /deliver
+    defaults: { _controller: MailgunAdminBundle:Webhook:deliver }
+
+copromatic_mailgun_admin_drop:
+    path:     /drop
+    defaults: { _controller: MailgunAdminBundle:Webhook:drop }
+
+copromatic_mailgun_admin_spam:
+    path:     /spam
+    defaults: { _controller: MailgunAdminBundle:Webhook:spam }
+
+copromatic_mailgun_admin_click:
+    path:     /click
+    defaults: { _controller: MailgunAdminBundle:Webhook:click }
+
+copromatic_mailgun_admin_open:
+    path:     /open
+    defaults: { _controller: MailgunAdminBundle:Webhook:open }

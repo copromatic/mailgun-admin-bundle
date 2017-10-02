@@ -25,12 +25,14 @@ class Send implements \Swift_Events_SendListener
 
     public function sendPerformed(\Swift_Events_SendEvent $event)
     {
-        $message = (new Message())
-            ->setMailgunId($event->getMessage()->getHeaders()->get('Message-ID')->getFieldBody())
-            ->setOpened(false)
-            ->setDelivered(false)
-        ;
-        $this->em->persist($message);
-        $this->em->flush();
+        if ($event->getMessage()->getHeaders()->has('Message-ID')) {
+            $message = (new Message())
+                ->setMailgunId(substr($event->getMessage()->getHeaders()->get('Message-ID')->getFieldBody(), 1, -1))
+                ->setOpened(false)
+                ->setDelivered(false)
+            ;
+            $this->em->persist($message);
+            $this->em->flush();
+        }
     }
 }
