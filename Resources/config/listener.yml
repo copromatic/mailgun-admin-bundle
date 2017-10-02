@@ -1,0 +1,6 @@
+services:
+    mailgun_admin.listener.send:
+        class: Copromatic\MailgunAdminBundle\Listener\Send
+        arguments: ['@logger']
+        tags:
+            - { name: swiftmailer.mailer.plugin }

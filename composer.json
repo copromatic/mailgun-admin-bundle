@@ -3,7 +3,7 @@
     "description" : "A bundle that offers a set of tools to monitor emails sent via Mailgun",
     "type" : "symfony-bundle",
     "authors" : [{
-        "name" : "yannis",
+        "name" : "Yannis Touili",
         "email" : "yannis@copromatic.com"
     }],
     "keywords" : [
@@ -13,6 +13,10 @@
         "MIT"
     ],
     "require" : {
+        "php": "<=7.1.2",
+        "symfony/symfony": "3.*",
+        "doctrine/orm": "^2.5",
+        "doctrine/doctrine-bundle": "^1.6",
     },
     "autoload" : {
         "psr-0" : {
