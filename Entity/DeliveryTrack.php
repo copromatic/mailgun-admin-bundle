@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class DeliveryTrack
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    protected $id;
+
+    /**
      * @var Message
      *
      * @ORM\ManyToOne(targetEntity="Copromatic\MailgunAdminBundle\Entity\Message")
@@ -44,9 +53,17 @@ class DeliveryTrack
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="recipient", type="datetime")
+     * @ORM\Column(name="created", type="datetime")
      */
     private $created;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @return Message

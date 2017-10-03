@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class ClickTrack
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    protected $id;
+
+    /**
      * @var Message
      *
      * @ORM\ManyToOne(targetEntity="Copromatic\MailgunAdminBundle\Entity\Message")
@@ -131,6 +140,14 @@ class ClickTrack
      * @ORM\Column(name="recipient", type="datetime")
      */
     private $created;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @return Message
