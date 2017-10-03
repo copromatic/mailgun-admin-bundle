@@ -7,11 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Message
  *
- * @ORM\Table(name="mailgun_message")
+ * @ORM\Table(name="mailgun_messages")
  * @ORM\Entity()
  */
-class Message {
-
+class Message
+{
     /**
      * @var integer
      *
@@ -31,44 +31,9 @@ class Message {
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="bounce", type="datetime", nullable=true)
+     * @ORM\Column(name="recipient", type="datetime")
      */
-    private $bounce;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="deliver", type="datetime", nullable=true)
-     */
-    private $deliver;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="drop", type="datetime", nullable=true)
-     */
-    private $drop;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="spam", type="datetime", nullable=true)
-     */
-    private $spam;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="click", type="datetime", nullable=true)
-     */
-    private $click;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="open", type="datetime", nullable=true)
-     */
-    private $open;
+    private $created;
 
     /**
      * @return int
@@ -99,108 +64,18 @@ class Message {
     /**
      * @return \DateTime
      */
-    public function getBounce()
+    public function getCreated()
     {
-        return $this->bounce;
+        return $this->created;
     }
 
     /**
-     * @param \DateTime $bounce
+     * @param \DateTime $created
      * @return Message
      */
-    public function setBounce($bounce)
+    public function setCreated($created)
     {
-        $this->bounce = $bounce;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDeliver()
-    {
-        return $this->deliver;
-    }
-
-    /**
-     * @param \DateTime $deliver
-     * @return Message
-     */
-    public function setDeliver($deliver)
-    {
-        $this->deliver = $deliver;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDrop()
-    {
-        return $this->drop;
-    }
-
-    /**
-     * @param \DateTime $drop
-     * @return Message
-     */
-    public function setDrop($drop)
-    {
-        $this->drop = $drop;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getSpam()
-    {
-        return $this->spam;
-    }
-
-    /**
-     * @param \DateTime $spam
-     * @return Message
-     */
-    public function setSpam($spam)
-    {
-        $this->spam = $spam;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getClick()
-    {
-        return $this->click;
-    }
-
-    /**
-     * @param \DateTime $click
-     * @return Message
-     */
-    public function setClick($click)
-    {
-        $this->click = $click;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getOpen()
-    {
-        return $this->open;
-    }
-
-    /**
-     * @param \DateTime $open
-     * @return Message
-     */
-    public function setOpen($open)
-    {
-        $this->open = $open;
+        $this->created = $created;
         return $this;
     }
 }

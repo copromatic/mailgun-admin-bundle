@@ -9,6 +9,8 @@ use Monolog\Logger;
 
 class Send implements \Swift_Events_SendListener
 {
+    const MAILGUN_ADMIN_MESSAGE_ID_HEADER = 'mailgun-admin-message-id';
+
     /** @var Registry */
     private $em;
 
@@ -21,18 +23,26 @@ class Send implements \Swift_Events_SendListener
         $this->logger = $logger;
     }
 
-    public function beforeSendPerformed(\Swift_Events_SendEvent $event){}
-
-    public function sendPerformed(\Swift_Events_SendEvent $event)
+    public function beforeSendPerformed(\Swift_Events_SendEvent $event)
     {
         if ($event->getMessage()->getHeaders()->has('Message-ID')) {
             $message = (new Message())
                 ->setMailgunId(substr($event->getMessage()->getHeaders()->get('Message-ID')->getFieldBody(), 1, -1))
-                ->setOpened(false)
-                ->setDelivered(false)
             ;
             $this->em->persist($message);
             $this->em->flush();
+
+            $event->getMessage()
+                ->getHeaders()
+                ->addTextHeader(
+                    'v:my-custom-data',
+                    json_encode([
+                        self::MAILGUN_ADMIN_MESSAGE_ID_HEADER => $message->getId()
+                    ])
+                )
+            ;
         }
     }
+
+    public function sendPerformed(\Swift_Events_SendEvent $event){}
 }
