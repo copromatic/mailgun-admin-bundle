@@ -29,6 +29,7 @@ bounces, clicks, deliveries, failures, opens, spam reports
 ## TODO
 
 - ! Verify the request from mailgun with the digest and api key !
+- ! tests !
 - Implement unsubscribe tracking
 - Services to access content easily
 - Twig extensions to display data
