@@ -117,7 +117,7 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager()->persist($bounceTrack);
+                $this->getDoctrine()->getManager()->persist($spamComplaintTrack);
                 $this->getDoctrine()->getManager()->flush();
                 return new Response();
             }
@@ -153,7 +153,7 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager()->persist($bounceTrack);
+                $this->getDoctrine()->getManager()->persist($clickTrack);
                 $this->getDoctrine()->getManager()->flush();
                 return new Response();
             }
@@ -189,7 +189,7 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager()->persist($bounceTrack);
+                $this->getDoctrine()->getManager()->persist($openTrack);
                 $this->getDoctrine()->getManager()->flush();
                 return new Response();
             }
