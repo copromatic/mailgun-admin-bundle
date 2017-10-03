@@ -2,7 +2,7 @@
 
 ## Requirements
 
-This bundle is tested with Symfony 3 and PHP 7.1
+This bundle is tested with Symfony 3 and PHP 7.1 with Swiftmailer and [Mailgun Transport](https://github.com/tehplague/swiftmailer-mailgun-bundle)
 
 ## Getting started
 
@@ -23,6 +23,14 @@ A listener waits for an email sent, it registers it to the DB if it bears a Mess
 
 ## What's included
 
+8 tables: One for messages (mailgun can set their same id to multiples emails if they are sent at the same time) and 7 for trackers: 
+bounces, clicks, deliveries, failures, opens, spam reports, unsubscibes
+
+## TODO
+
+- ! Verify the request from mailgun with the digest and api key !
+- Services to access content easily
+- Twig extensions to display data
 
 ## Creators
 

@@ -36,7 +36,7 @@ class Send implements \Swift_Events_SendListener
             $event->getMessage()
                 ->getHeaders()
                 ->addTextHeader(
-                    'v:my-custom-data',
+                    'X-Mailgun-Variables',
                     json_encode([
                         self::MAILGUN_ADMIN_MESSAGE_ID_HEADER => $message->getId()
                     ])
