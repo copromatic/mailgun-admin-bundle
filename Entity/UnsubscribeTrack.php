@@ -135,16 +135,9 @@ class UnsubscribeTrack
     private $mailingList;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="recipient", type="text")
-     */
-    private $customVariables;
-
-    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="recipient", type="datetime")
+     * @ORM\Column(name="created", type="datetime")
      */
     private $created;
 
@@ -441,24 +434,6 @@ class UnsubscribeTrack
     public function setMailingList($mailingList)
     {
         $this->mailingList = $mailingList;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCustomVariables()
-    {
-        return $this->customVariables;
-    }
-
-    /**
-     * @param string $customVariables
-     * @return UnsubscribeTrack
-     */
-    public function setCustomVariables($customVariables)
-    {
-        $this->customVariables = $customVariables;
         return $this;
     }
 

@@ -74,7 +74,7 @@ class FailureTrack
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="recipient", type="datetime")
+     * @ORM\Column(name="created", type="datetime")
      */
     private $created;
 
