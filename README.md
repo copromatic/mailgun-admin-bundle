@@ -24,11 +24,12 @@ A listener waits for an email sent, it registers it to the DB if it bears a Mess
 ## What's included
 
 8 tables: One for messages (mailgun can set their same id to multiples emails if they are sent at the same time) and 7 for trackers: 
-bounces, clicks, deliveries, failures, opens, spam reports, unsubscibes
+bounces, clicks, deliveries, failures, opens, spam reports
 
 ## TODO
 
 - ! Verify the request from mailgun with the digest and api key !
+- Implement unsubscribe tracking
 - Services to access content easily
 - Twig extensions to display data
 
