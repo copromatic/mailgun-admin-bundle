@@ -32,105 +32,105 @@ class UnsubscribeTrack
     /**
      * @var string
      *
-     * @ORM\Column(name="recipient", type="string", length=512)
+     * @ORM\Column(name="recipient", type="string", length=512, nullable=true)
      */
     private $recipient;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="domain", type="string", length=128)
+     * @ORM\Column(name="domain", type="string", length=128, nullable=true)
      */
     private $domain;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ip", type="string", length=16)
+     * @ORM\Column(name="ip", type="string", length=16, nullable=true)
      */
     private $ip;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=8)
+     * @ORM\Column(name="country", type="string", length=8, nullable=true)
      */
     private $country;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=128)
+     * @ORM\Column(name="region", type="string", length=128, nullable=true)
      */
     private $region;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=128)
+     * @ORM\Column(name="city", type="string", length=128, nullable=true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="user_agent", type="string", length=256)
+     * @ORM\Column(name="user_agent", type="string", length=256, nullable=true)
      */
     private $userAgent;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="device_type", type="string", length=8)
+     * @ORM\Column(name="device_type", type="string", length=8, nullable=true)
      */
     private $deviceType;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="client_type", type="string", length=64)
+     * @ORM\Column(name="client_type", type="string", length=64, nullable=true)
      */
     private $clientType;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="client_name", type="string", length=32)
+     * @ORM\Column(name="client_name", type="string", length=32, nullable=true)
      */
     private $clientName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="client_os", type="string", length=32)
+     * @ORM\Column(name="client_os", type="string", length=32, nullable=true)
      */
     private $clientOs;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="campaign_id", type="string", length=64)
+     * @ORM\Column(name="campaign_id", type="string", length=64, nullable=true)
      */
     private $campaignId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="campaign_name", type="string", length=512)
+     * @ORM\Column(name="campaign_name", type="string", length=512, nullable=true)
      */
     private $campaignName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tag", type="string", length=64)
+     * @ORM\Column(name="tag", type="string", length=64, nullable=true)
      */
     private $tag;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mailing_list", type="string", length=128)
+     * @ORM\Column(name="mailing_list", type="string", length=128, nullable=true)
      */
     private $mailingList;
 

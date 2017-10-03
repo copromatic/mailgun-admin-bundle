@@ -32,21 +32,21 @@ class DeliveryTrack
     /**
      * @var string
      *
-     * @ORM\Column(name="recipient", type="string", length=512)
+     * @ORM\Column(name="recipient", type="string", length=512, nullable=true)
      */
     private $recipient;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="domain", type="string", length=128)
+     * @ORM\Column(name="domain", type="string", length=128, nullable=true)
      */
     private $domain;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="message_headers", type="json_array", length=16)
+     * @ORM\Column(name="message_headers", type="json_array", length=16, nullable=true)
      */
     private $messageHeaders;
 

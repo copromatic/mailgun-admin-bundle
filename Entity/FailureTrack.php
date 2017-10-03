@@ -32,42 +32,42 @@ class FailureTrack
     /**
      * @var string
      *
-     * @ORM\Column(name="recipient", type="string", length=512)
+     * @ORM\Column(name="recipient", type="string", length=512, nullable=true)
      */
     private $recipient;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="domain", type="string", length=128)
+     * @ORM\Column(name="domain", type="string", length=128, nullable=true)
      */
     private $domain;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="message_headers", type="json_array", length=16)
+     * @ORM\Column(name="message_headers", type="json_array", length=16, nullable=true)
      */
     private $messageHeaders;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="reason", type="string", length=8)
+     * @ORM\Column(name="reason", type="string", length=8, nullable=true)
      */
     private $reason;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=64)
+     * @ORM\Column(name="code", type="string", length=64, nullable=true)
      */
     private $code;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 

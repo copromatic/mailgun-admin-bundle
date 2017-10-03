@@ -32,49 +32,49 @@ class SpamComplaintTrack
     /**
      * @var string
      *
-     * @ORM\Column(name="recipient", type="string", length=512)
+     * @ORM\Column(name="recipient", type="string", length=512, nullable=true)
      */
     private $recipient;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="domain", type="string", length=128)
+     * @ORM\Column(name="domain", type="string", length=128, nullable=true)
      */
     private $domain;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="message_headers", type="json_array", length=16)
+     * @ORM\Column(name="message_headers", type="json_array", length=16, nullable=true)
      */
     private $messageHeaders;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="campaign_id", type="string", length=64)
+     * @ORM\Column(name="campaign_id", type="string", length=64, nullable=true)
      */
     private $campaignId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="campaign_name", type="string", length=512)
+     * @ORM\Column(name="campaign_name", type="string", length=512, nullable=true)
      */
     private $campaignName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tag", type="string", length=64)
+     * @ORM\Column(name="tag", type="string", length=64, nullable=true)
      */
     private $tag;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mailing_list", type="string", length=128)
+     * @ORM\Column(name="mailing_list", type="string", length=128, nullable=true)
      */
     private $mailingList;
 

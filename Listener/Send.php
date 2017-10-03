@@ -11,7 +11,7 @@ class Send implements \Swift_Events_SendListener
 {
     const MAILGUN_ADMIN_MESSAGE_ID_HEADER = 'mailgun-admin-message-id';
 
-    /** @var Registry */
+    /** @var EntityManager */
     private $em;
 
     /** @var Logger */
@@ -28,6 +28,7 @@ class Send implements \Swift_Events_SendListener
         if ($event->getMessage()->getHeaders()->has('Message-ID')) {
             $message = (new Message())
                 ->setMailgunId(substr($event->getMessage()->getHeaders()->get('Message-ID')->getFieldBody(), 1, -1))
+                ->setCreated(new \DateTime())
             ;
             $this->em->persist($message);
             $this->em->flush();
