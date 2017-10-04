@@ -39,11 +39,14 @@ bounces, clicks, deliveries, failures, opens, spam reports
 <a href="https://www.copromatic.com/">
     <img src="https://files.copromatic.com/logo-copromatic-hd.jpg" height="70px">
 </a>
+<br>
+
+[github.com/copromatic]()
 
 <br>
 
 **Yannis Touili**
-- <github.com/touiliy>
+- [github.com/touiliy]()
 
 ## Copyright and license
 Code and documentation copyright 2012-2017. Code released under the [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE).

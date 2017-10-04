@@ -18,7 +18,7 @@ class WebhookController extends Controller {
     public function bounceAction(Request $request) {
         $parameters = $request->request->all();
         if (isset($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])) {
-            $message = $this->getDoctrine()
+            $message = $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')
                 ->getRepository('MailgunAdminBundle:Message')
                 ->find($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])
             ;
@@ -38,8 +38,8 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager()->persist($bounceTrack);
-                $this->getDoctrine()->getManager()->flush();
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($bounceTrack);
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->flush();
                 return new Response();
             }
         }
@@ -49,7 +49,7 @@ class WebhookController extends Controller {
     public function deliverAction(Request $request) {
         $parameters = $request->request->all();
         if (isset($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])) {
-            $message = $this->getDoctrine()
+            $message = $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')
                 ->getRepository('MailgunAdminBundle:Message')
                 ->find($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])
             ;
@@ -62,8 +62,8 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager()->persist($deliveryTrack);
-                $this->getDoctrine()->getManager()->flush();
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($deliveryTrack);
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->flush();
                 return new Response();
             }
         }
@@ -73,7 +73,7 @@ class WebhookController extends Controller {
     public function dropAction(Request $request) {
         $parameters = $request->request->all();
         if (isset($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])) {
-            $message = $this->getDoctrine()
+            $message = $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')
                 ->getRepository('MailgunAdminBundle:Message')
                 ->find($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])
             ;
@@ -89,8 +89,8 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager()->persist($failureTrack);
-                $this->getDoctrine()->getManager()->flush();
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($failureTrack);
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->flush();
                 return new Response();
             }
         }
@@ -100,7 +100,7 @@ class WebhookController extends Controller {
     public function spamAction(Request $request) {
         $parameters = $request->request->all();
         if (isset($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])) {
-            $message = $this->getDoctrine()
+            $message = $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')
                 ->getRepository('MailgunAdminBundle:Message')
                 ->find($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])
             ;
@@ -117,8 +117,8 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager()->persist($bounceTrack);
-                $this->getDoctrine()->getManager()->flush();
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($bounceTrack);
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->flush();
                 return new Response();
             }
         }
@@ -128,7 +128,7 @@ class WebhookController extends Controller {
     public function clickAction(Request $request) {
         $parameters = $request->request->all();
         if (isset($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])) {
-            $message = $this->getDoctrine()
+            $message = $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')
                 ->getRepository('MailgunAdminBundle:Message')
                 ->find($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])
             ;
@@ -153,8 +153,8 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager()->persist($bounceTrack);
-                $this->getDoctrine()->getManager()->flush();
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($bounceTrack);
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->flush();
                 return new Response();
             }
         }
@@ -164,7 +164,7 @@ class WebhookController extends Controller {
     public function openAction(Request $request) {
         $parameters = $request->request->all();
         if (isset($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])) {
-            $message = $this->getDoctrine()
+            $message = $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')
                 ->getRepository('MailgunAdminBundle:Message')
                 ->find($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])
             ;
@@ -189,8 +189,8 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager()->persist($bounceTrack);
-                $this->getDoctrine()->getManager()->flush();
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($bounceTrack);
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->flush();
                 return new Response();
             }
         }
