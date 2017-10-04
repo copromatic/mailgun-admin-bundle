@@ -24,9 +24,9 @@ class Message
     /**
      * @var string
      *
-     * @ORM\Column(name="mailgun_id", type="string", length=256, nullable=false)
+     * @ORM\Column(name="message_hash", type="string", length=256, nullable=false)
      */
-    private $mailgunId;
+    private $messageHash;
 
     /**
      * @var \DateTime
@@ -46,18 +46,18 @@ class Message
     /**
      * @return string
      */
-    public function getMailgunId()
+    public function getMessageHash()
     {
-        return $this->mailgunId;
+        return $this->messageHash;
     }
 
     /**
-     * @param string $mailgunId
+     * @param string $messageHash
      * @return Message
      */
-    public function setMailgunId($mailgunId)
+    public function setMessageHash($messageHash)
     {
-        $this->mailgunId = $mailgunId;
+        $this->messageHash = $messageHash;
         return $this;
     }
 

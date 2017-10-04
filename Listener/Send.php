@@ -23,7 +23,7 @@ class Send implements \Swift_Events_SendListener
     {
         if ($event->getMessage()->getHeaders()->has('Message-ID')) {
             $message = (new Message())
-                ->setMailgunId(substr($event->getMessage()->getHeaders()->get('Message-ID')->getFieldBody(), 1, -1))
+                ->setMessageHash($event->getMessage()->getHeaders()->get('Message-ID')->getFieldBody())
                 ->setCreated(new \DateTime())
             ;
             $this->em->persist($message);
