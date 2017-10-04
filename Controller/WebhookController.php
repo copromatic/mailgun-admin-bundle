@@ -188,7 +188,7 @@ class WebhookController extends Controller {
                     ->setMailingList(isset($parameters['mailing-list']) ? $parameters['mailing-list'] : null)
                     ->setCreated(new \DateTime())
                 ;
-                
+
                 $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($openTrack);
                 $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->flush();
                 return new Response();

@@ -14,13 +14,9 @@ class Send implements \Swift_Events_SendListener
     /** @var EntityManager */
     private $em;
 
-    /** @var Logger */
-    private $logger;
-
-    public function __construct($em, $logger)
+    public function __construct($em)
     {
         $this->em = $em;
-        $this->logger = $logger;
     }
 
     public function beforeSendPerformed(\Swift_Events_SendEvent $event)
