@@ -105,7 +105,7 @@ class WebhookController extends Controller {
                 ->find($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])
             ;
             if ($message) {
-                $bounceTrack = (new SpamComplaintTrack())
+                $spamComplaintTrack = (new SpamComplaintTrack())
                     ->setMessage($message)
                     ->setRecipient(isset($parameters['recipient']) ? $parameters['recipient'] : null)
                     ->setDomain(isset($parameters['domain']) ? $parameters['domain'] : null)
@@ -117,7 +117,7 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($bounceTrack);
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($spamComplaintTrack);
                 $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->flush();
                 return new Response();
             }
@@ -133,7 +133,7 @@ class WebhookController extends Controller {
                 ->find($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])
             ;
             if ($message) {
-                $bounceTrack = (new ClickTrack())
+                $clickTrack = (new ClickTrack())
                     ->setMessage($message)
                     ->setRecipient(isset($parameters['recipient']) ? $parameters['recipient'] : null)
                     ->setDomain(isset($parameters['domain']) ? $parameters['domain'] : null)
@@ -153,7 +153,7 @@ class WebhookController extends Controller {
                     ->setCreated(new \DateTime())
                 ;
 
-                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($bounceTrack);
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($clickTrack);
                 $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->flush();
                 return new Response();
             }
@@ -169,7 +169,7 @@ class WebhookController extends Controller {
                 ->find($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])
             ;
             if ($message) {
-                $bounceTrack = (new OpenTrack())
+                $openTrack = (new OpenTrack())
                     ->setMessage($message)
                     ->setRecipient(isset($parameters['recipient']) ? $parameters['recipient'] : null)
                     ->setDomain(isset($parameters['domain']) ? $parameters['domain'] : null)
@@ -188,8 +188,8 @@ class WebhookController extends Controller {
                     ->setMailingList(isset($parameters['mailing-list']) ? $parameters['mailing-list'] : null)
                     ->setCreated(new \DateTime())
                 ;
-
-                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($bounceTrack);
+                
+                $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->persist($openTrack);
                 $this->getDoctrine()->getManager('copromatic_mailgun_admin.entity_manager')->flush();
                 return new Response();
             }
