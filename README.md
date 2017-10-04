@@ -11,24 +11,50 @@ MailgunAdminBundle simply register ids of emails sent from Mailgun in DB and off
 Just pull the vendor:<br/>
 `composer require copromatic/mailgun-admin-bundle`
 
+(Optional) Set up a connection for the bundle, will use "default" if not specified
+
+```yaml
+orm:
+    default_entity_manager: default
+    entity_managers:
+        default:
+            connection: default
+            naming_strategy: doctrine.orm.naming_strategy.underscore
+            auto_mapping: true
+        mailgun_admin:
+            connection: default
+            naming_strategy: doctrine.orm.naming_strategy.underscore
+            mappings:
+                MailgunAdminBundle: ~
+
+...
+
+mailgun_admin:
+    api_key: '%mailgun_api_key%'
+    entity_manager: 'mailgun_admin'
+```
+
+
+
 Then update your database:<br/>
-`php [bin|app]/console doctrine:schema:update --force`
+`php [bin|app]/console doctrine:schema:update --force [--em=mailgun_admin]`
 
 Or
 
 `php [bin|app]/console doctrine:migration:diff` and `php [bin|app]/console doctrine:migration:migrate` if you roll with migrations
 
 
-A listener waits for an email sent, it registers it to the DB if it bears a Message-Id (set up by Mailgun)
+A Swiftmailer listener waits for an email sent, it registers it to the DB if it bears a Message-Id (set up by Mailgun)
 
 ## What's included
 
-8 tables: One for messages (mailgun can set their same id to multiples emails if they are sent at the same time) and 7 for trackers: 
+8 tables:<br>
+One for messages (mailgun can set their same id to multiples emails if they are sent at the same time) <br>
+7 for trackers: 
 bounces, clicks, deliveries, failures, opens, spam reports
 
 ## TODO
 
-- ! Verify the request from mailgun with the digest and api key !
 - ! tests !
 - Implement unsubscribe tracking
 - Services to access content easily

@@ -9,7 +9,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface {
     public function getConfigTreeBuilder() {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('copromatic_mailgun_admin');
+        $rootNode = $treeBuilder->root('mailgun_admin');
         $this->addOrmSection($rootNode);
         return $treeBuilder;
     }
@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface {
         $node
             ->children()
                 ->scalarNode('entity_manager')->defaultValue('default')->end()
+                ->scalarNode('api_key')->isRequired()->end()
             ->end()
         ->end();
     }

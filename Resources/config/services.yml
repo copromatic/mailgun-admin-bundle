@@ -1,0 +1,4 @@
+services:
+    mailgun_admin.security:
+        class: Copromatic\MailgunAdminBundle\Service\Security
+        arguments: ['']

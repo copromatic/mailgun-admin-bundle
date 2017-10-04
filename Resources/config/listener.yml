@@ -1,6 +1,6 @@
 services:
-    copromatic_mailgun_admin.listener.send:
+    mailgun_admin.listener.send:
         class: Copromatic\MailgunAdminBundle\Listener\Send
-        arguments: ['@copromatic_mailgun_admin.entity_manager']
+        arguments: ['@mailgun_admin.entity_manager']
         tags:
             - { name: swiftmailer.mailer.plugin }

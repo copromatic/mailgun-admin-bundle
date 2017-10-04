@@ -21,15 +21,15 @@ class MailgunAdminExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = $this->getConfiguration($configs, $container);
-
         $config = $this->processConfiguration($configuration, $configs);
+        $container->setAlias('mailgun_admin.entity_manager', 'doctrine.orm.'.$config['entity_manager'].'_entity_manager');
 
-        if($config['entity_manager'] == 'default'){
-            throw new LogicException('Do not use the default entity manager');
-        }
-        $container->setAlias('copromatic_mailgun_admin.entity_manager', 'doctrine.orm.'.$config['entity_manager'].'_entity_manager');
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('listener.yml');
+        $loader->load('services.yml');
+
+        $securityService = $container->getDefinition('mailgun_admin.security');
+        $securityService->replaceArgument(0, $config['api_key']);
     }
 
     /**
