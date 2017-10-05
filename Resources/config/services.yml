@@ -2,3 +2,6 @@ services:
     mailgun_admin.security:
         class: Copromatic\MailgunAdminBundle\Service\Security
         arguments: ['']
+    mailgun_admin.manager:
+        class: Copromatic\MailgunAdminBundle\Service\Manager
+        arguments: ['@mailgun_admin.entity_manager']

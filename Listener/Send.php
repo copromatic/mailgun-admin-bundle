@@ -3,9 +3,7 @@
 namespace Copromatic\MailgunAdminBundle\Listener;
 
 use Copromatic\MailgunAdminBundle\Entity\Message;
-use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
-use Monolog\Logger;
 
 class Send implements \Swift_Events_SendListener
 {
