@@ -30,7 +30,7 @@ class Manager {
      */
     public function getMessageByHash($hash) {
         return $this->em->getRepository('MailgunAdminBundle:Message')
-            ->findBy([
+            ->findOneBy([
                 'messageHash'   => $hash
             ])
         ;
@@ -49,7 +49,7 @@ class Manager {
             $filters['recipient'] = $recipient;
         }
         return $this->em->getRepository('MailgunAdminBundle:BounceTrack')
-            ->findBy($recipient)
+            ->findBy($filters)
         ;
     }
 
@@ -66,7 +66,7 @@ class Manager {
             $filters['recipient'] = $recipient;
         }
         return $this->em->getRepository('MailgunAdminBundle:ClickTrack')
-            ->findBy($recipient)
+            ->findBy($filters)
         ;
     }
 
@@ -83,7 +83,7 @@ class Manager {
             $filters['recipient'] = $recipient;
         }
         return $this->em->getRepository('MailgunAdminBundle:DeliveryTrack')
-            ->findBy($recipient)
+            ->findBy($filters)
         ;
     }
 
@@ -100,7 +100,7 @@ class Manager {
             $filters['recipient'] = $recipient;
         }
         return $this->em->getRepository('MailgunAdminBundle:FailureTrack')
-            ->findBy($recipient)
+            ->findBy($filters)
         ;
     }
 
@@ -117,7 +117,7 @@ class Manager {
             $filters['recipient'] = $recipient;
         }
         return $this->em->getRepository('MailgunAdminBundle:OpenTrack')
-            ->findBy($recipient)
+            ->findBy($filters)
         ;
     }
 
@@ -134,7 +134,7 @@ class Manager {
             $filters['recipient'] = $recipient;
         }
         return $this->em->getRepository('MailgunAdminBundle:UnsubscribeTrack')
-            ->findBy($recipient)
+            ->findBy($filters)
         ;
     }
 }
