@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManager;
 class Send implements \Swift_Events_SendListener
 {
     const MAILGUN_ADMIN_MESSAGE_ID_HEADER = 'mailgun-admin-message-id';
+    const MAILGUN_MESSAGE_ID_HEADER = 'Message-Id';
 
     /** @var EntityManager */
     private $em;

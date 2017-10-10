@@ -37,7 +37,7 @@ class Message
 
     public function __construct()
     {
-        $this->created =  new DateTime();
+        $this->created =  new \DateTime();
     }
     
     /**

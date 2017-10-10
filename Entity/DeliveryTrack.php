@@ -57,6 +57,11 @@ class DeliveryTrack
      */
     private $created;
 
+    public function __construct()
+    {
+        $this->created =  new \DateTime();
+    }
+
     /**
      * @return int
      */
