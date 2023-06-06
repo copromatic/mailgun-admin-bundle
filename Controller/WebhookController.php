@@ -18,6 +18,14 @@ class WebhookController extends Controller {
     protected function checkAccessOrException(Request $request){
         $parameters = $request->request->all();
 
+        //gestion v3
+        if(count($parameters) == 0 && $request->getContent()){
+            $json = @json_decode($request->getContent(), true);
+            $parameters['timestamp'] = $json['signature']['timestamp'];
+            $parameters['token'] = $json['signature']['token'];
+            $parameters['signature'] = $json['signature']['signature'];
+        }
+
         if (!isset($parameters['timestamp']) || !isset($parameters['token']) || !isset($parameters['signature'])) {
             throw new \Symfony\Component\HttpKernel\Exception\HttpException(406, 'Wrong signature');
         }
@@ -27,6 +35,16 @@ class WebhookController extends Controller {
     }
     protected function findMessageOrException(Request $request){
         $parameters = $request->request->all();
+
+        //gestion v3
+        if(count($parameters) == 0 && $request->getContent()){
+            $json = @json_decode($request->getContent(), true);
+            if(isset($json['event-data'])) {
+                foreach ($json['event-data']['user-variables'] ?? [] as $variable => $value) {
+                    $parameters[$variable] = $value;
+                }
+            }
+        }
 
         $message = null;
         if(isset($parameters[Send::MAILGUN_ADMIN_MESSAGE_ID_HEADER])){
@@ -61,6 +79,26 @@ class WebhookController extends Controller {
         $message = $this->findMessageOrException($request);
 
         $parameters = $request->request->all();
+        //gestion v3
+        if(count($parameters) == 0 && $request->getContent()){
+            $json = @json_decode($request->getContent(), true);
+            if(isset($json['event-data'])) {
+                $parameters['recipient'] = $json['event-data']['recipient'] ?? null;
+                $parameters['domain'] = $request->get('domain', null);
+                $parameters['message-headers'] = $json['event-data']['message']['headers'] ?? [];
+                if (isset($json['event-data']['campaigns']) && count($json['event-data']['campaigns'])) {
+                    $parameters['campaign-id'] = $json['event-data']['campaigns'][0]['id'] ?? null;
+                    $parameters['campaign-name'] = $json['event-data']['campaigns'][0]['name'] ?? null;
+                }
+                if (isset($json['event-data']['delivery-status'])) {
+                    $parameters['error'] = $json['event-data']['delivery-status']['message'] ?? null;
+                    $parameters['code'] = $json['event-data']['delivery-status']['code'] ?? null;
+                    $parameters['notification'] = $json['event-data']['delivery-status']['description'] ?? null;
+                }
+                $parameters['tag'] = isset($json['event-data']['tags']) ? implode(',', $json['event-data']['tags']) : null;
+            }
+        }
+
         $bounceTrack = (new BounceTrack())
             ->setMessage($message)
             ->setRecipient(isset($parameters['recipient']) ? $parameters['recipient'] : null)
@@ -84,6 +122,15 @@ class WebhookController extends Controller {
         $message = $this->findMessageOrException($request);
 
         $parameters = $request->request->all();
+        //gestion v3
+        if(count($parameters) == 0 && $request->getContent()){
+            $json = @json_decode($request->getContent(), true);
+            if(isset($json['event-data'])) {
+                $parameters['recipient'] = $json['event-data']['recipient'] ?? null;
+                $parameters['domain'] = $request->get('domain', null);
+                $parameters['message-headers'] = $json['event-data']['message']['headers'] ?? [];
+            }
+        }
         $deliveryTrack = (new DeliveryTrack())
             ->setMessage($message)
             ->setRecipient(isset($parameters['recipient']) ? $parameters['recipient'] : null)
@@ -100,6 +147,22 @@ class WebhookController extends Controller {
         $message = $this->findMessageOrException($request);
 
         $parameters = $request->request->all();
+        //gestion v3
+        if(count($parameters) == 0 && $request->getContent()){
+            $json = @json_decode($request->getContent(), true);
+            if(isset($json['event-data'])) {
+                $parameters['recipient'] = $json['event-data']['recipient'] ?? null;
+                $parameters['domain'] = $request->get('domain', null);
+                $parameters['message-headers'] = $json['event-data']['message']['headers'] ?? [];
+                $parameters['reason'] = $json['event-data']['reason'] ?? null;
+                if (isset($json['event-data']['delivery-status'])) {
+                    $parameters['code'] = $json['event-data']['delivery-status']['code'] ?? null;
+                    $parameters['description'] = $json['event-data']['delivery-status']['message'] ?? null;
+                    $parameters['description'] = $parameters['description'] . ($json['event-data']['delivery-status']['message'] ?? '');
+                }
+            }
+        }
+
         $failureTrack = (new FailureTrack())
             ->setMessage($message)
             ->setRecipient(isset($parameters['recipient']) ? $parameters['recipient'] : null)
@@ -117,6 +180,22 @@ class WebhookController extends Controller {
         $this->checkAccessOrException($request);
 
         $message = $this->findMessageOrException($request);
+
+        $parameters = $request->request->all();
+        //gestion v3
+        if(count($parameters) == 0 && $request->getContent()){
+            $json = @json_decode($request->getContent(), true);
+            if(isset($json['event-data'])) {
+                $parameters['recipient'] = $json['event-data']['recipient'] ?? null;
+                $parameters['domain'] = $request->get('domain', null);
+                $parameters['message-headers'] = $json['event-data']['message']['headers'] ?? [];
+                if (isset($json['event-data']['campaigns']) && count($json['event-data']['campaigns'])) {
+                    $parameters['campaign-id'] = $json['event-data']['campaigns'][0]['id'] ?? null;
+                    $parameters['campaign-name'] = $json['event-data']['campaigns'][0]['name'] ?? null;
+                }
+                $parameters['tag'] = isset($json['tags']) ? implode(',', $json['tags']) : null;
+            }
+        }
 
         $parameters = $request->request->all();
         $spamComplaintTrack = (new SpamComplaintTrack())
@@ -139,6 +218,30 @@ class WebhookController extends Controller {
         $message = $this->findMessageOrException($request);
 
         $parameters = $request->request->all();
+        //gestion v3
+        if(count($parameters) == 0 && $request->getContent()){
+            $json = @json_decode($request->getContent(), true);
+            if(isset($json['event-data'])) {
+                $parameters['recipient'] = $json['event-data']['recipient'] ?? null;
+                $parameters['domain'] = $request->get('domain', null);
+                $parameters['ip'] = $json['event-data']['ip'] ?? null;
+                $parameters['country'] = $json['event-data']['geolocation']['country'] ?? null;
+                $parameters['region'] = $json['event-data']['geolocation']['region'] ?? null;
+                $parameters['city'] = $json['event-data']['geolocation']['city'] ?? null;
+                if (isset($json['event-data']['campaigns']) && count($json['event-data']['campaigns'])) {
+                    $parameters['campaign-id'] = $json['event-data']['campaigns'][0]['id'] ?? null;
+                    $parameters['campaign-name'] = $json['event-data']['campaigns'][0]['name'] ?? null;
+                }
+
+                $parameters['user-agent'] = $json['event-data']['client-info']['user-agent'] ?? null;
+                $parameters['device-type'] = $json['event-data']['client-info']['device-type'] ?? null;
+                $parameters['client-type'] = $json['event-data']['client-info']['client-type'] ?? null;
+                $parameters['client-name'] = $json['event-data']['client-info']['client-name'] ?? null;
+                $parameters['client-os'] = $json['event-data']['client-info']['client-os'] ?? null;
+                $parameters['tag'] = isset($json['event-data']['tags']) ? implode(',', $json['event-data']['tags']) : null;
+            }
+        }
+
         $clickTrack = (new ClickTrack())
             ->setMessage($message)
             ->setRecipient(isset($parameters['recipient']) ? $parameters['recipient'] : null)
@@ -167,6 +270,29 @@ class WebhookController extends Controller {
         $message = $this->findMessageOrException($request);
 
         $parameters = $request->request->all();
+        //gestion v3
+        if(count($parameters) == 0 && $request->getContent()){
+            $json = @json_decode($request->getContent(), true);
+            if(isset($json['event-data'])) {
+                $parameters['recipient'] = $json['event-data']['recipient'] ?? null;
+                $parameters['domain'] = $request->get('domain', null);
+                $parameters['ip'] = $json['event-data']['ip'] ?? null;
+                $parameters['country'] = $json['event-data']['geolocation']['country'] ?? null;
+                $parameters['region'] = $json['event-data']['geolocation']['region'] ?? null;
+                $parameters['city'] = $json['event-data']['geolocation']['city'] ?? null;
+                if (isset($json['event-data']['campaigns']) && count($json['event-data']['campaigns'])) {
+                    $parameters['campaign-id'] = $json['event-data']['campaigns'][0]['id'] ?? null;
+                    $parameters['campaign-name'] = $json['event-data']['campaigns'][0]['name'] ?? null;
+                }
+
+                $parameters['user-agent'] = $json['event-data']['client-info']['user-agent'] ?? null;
+                $parameters['device-type'] = $json['event-data']['client-info']['device-type'] ?? null;
+                $parameters['client-type'] = $json['event-data']['client-info']['client-type'] ?? null;
+                $parameters['client-name'] = $json['event-data']['client-info']['client-name'] ?? null;
+                $parameters['client-os'] = $json['event-data']['client-info']['client-os'] ?? null;
+                $parameters['tag'] = isset($json['event-data']['tags']) ? implode(',', $json['event-data']['tags']) : null;
+            }
+        }
         $openTrack = (new OpenTrack())
             ->setMessage($message)
             ->setRecipient(isset($parameters['recipient']) ? $parameters['recipient'] : null)
